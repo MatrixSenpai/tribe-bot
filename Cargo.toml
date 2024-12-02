@@ -1,0 +1,20 @@
+[package]
+name = "tribe-bot"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+dotenv = "0.15.0"
+anyhow = "1.0.93"
+log = "0.4.22"
+serenity = "0.12.4"
+humantime = "2.1.0"
+regex = "1.11.1"
+
+[dependencies.fern]
+version = "0.7.0"
+features = ["colored"]
+
+[dependencies.tokio]
+version = "1.41.1"
+features = ["full"]
