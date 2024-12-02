@@ -111,9 +111,16 @@ fn setup_logger() -> Result<()> {
 
 #[cfg(target_os = "linux")]
 fn setup_logger() -> Result<()> {
+    let formatter = syslog::Formatter3164 {
+        facility: syslog::Facility::LOG_USER,
+        hostname: None,
+        process: "tribe-bot".to_string(),
+        pid: 0
+    };
     fern::Dispatch::new()
-        .level(log::LevelFilter::Trace)
-        .chain(syslog::unix(syslog::Facility::LOG_USER)?)
+        .level(log::LevelFilter::Off)
+        .level_for("tribe_bot", log::LevelFilter::Trace)
+        .chain(syslog::unix(formatter).unwrap())
         .apply()?;
 
     Ok(())
