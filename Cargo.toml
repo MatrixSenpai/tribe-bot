@@ -10,10 +10,11 @@ log = "0.4.22"
 serenity = "0.12.4"
 humantime = "2.1.0"
 regex = "1.11.1"
+syslog = "6"
 
 [dependencies.fern]
 version = "0.7.0"
-features = ["colored"]
+features = ["colored", "syslog-6"]
 
 [dependencies.tokio]
 version = "1.41.1"

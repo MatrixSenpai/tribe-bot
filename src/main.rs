@@ -71,6 +71,7 @@ impl Env {
     }
 }
 
+#[cfg(target_os = "windows")]
 fn setup_logger() -> Result<()> {
     fern::Dispatch::new()
         .chain(
@@ -103,6 +104,16 @@ fn setup_logger() -> Result<()> {
                     ))
                 })
         )
+        .apply()?;
+
+    Ok(())
+}
+
+#[cfg(target_os = "linux")]
+fn setup_logger() -> Result<()> {
+    fern::Dispatch::new()
+        .level(log::LevelFilter::Trace)
+        .chain(syslog::unix(syslog::Facility::LOG_USER)?)
         .apply()?;
 
     Ok(())
