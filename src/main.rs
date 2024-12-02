@@ -12,7 +12,7 @@ extern crate log;
 
 #[tokio::main]
 async fn main() -> Result<()> {
-    dotenv::dotenv()?;
+    dotenv::dotenv().ok();
     setup_logger()?;
 
     let env = Env::new()?;
